@@ -15,20 +15,18 @@ chis = 1 #числитель
 znam = 1 #знаменатель
 n = 2      #номер слагаемого
 sum = 1    #сумма элементов
-toch = 1 #точность
+toch = 1
 for i in range(t): #перевод точности в вещественное число
     toch /= 10
 print(toch)
 F = X.copy() #копирование исходной матрицы в новую
-print(F)
 while abs(chis/znam) > toch:
     chis = np.linalg.det(F) #вычисление числителя
     znam *= (n - 1)     #вычисление знаменателя
-    print(n, chis/znam)
+    print(n, chis/znam, sum)
     sum += chis / znam #суммирование членов ряда
     n += 1
     F = F.dot(X)   #возведение матрицы в степень
 t2 = time.time()
 print("Сумма ряда: ", sum, "\nВремя работы программы: ", t2 - t1, "секунд")
-
 
