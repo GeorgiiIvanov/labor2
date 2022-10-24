@@ -5,28 +5,25 @@
 import time
 import numpy as np
 
-
 t = int(input("Введите количество знаков после запятой "))
 t1 = time.time()
-rang = np.random.randint(2, 5) #ранг матрицы
-X = np.random.randint(-3, 3, (rang, rang)) #заполнение матрицы случайными числами
+rang = np.random.randint(2, 6) #ранг матрицы
+X = np.random.randint(-5, 5, (rang, rang)) #заполнение матрицы случайными числами
 print(X)
 chis = 1 #числитель
 znam = 1 #знаменатель
 n = 2      #номер слагаемого
 sum = 1    #сумма элементов
-toch = 1
-for i in range(t): #перевод точности в вещественное число
-    toch /= 10
+toch = 10**(-t)
 print(toch)
+print("Номер слагаемого:", 1, "Сумма ряда: ", sum)
 F = X.copy() #копирование исходной матрицы в новую
 while abs(chis/znam) > toch:
     chis = np.linalg.det(F) #вычисление числителя
     znam *= (n - 1)     #вычисление знаменателя
-    print(n, chis/znam, sum)
     sum += chis / znam #суммирование членов ряда
+    print("Номер слагаемого:", n, "Сумма ряда: ", sum)
     n += 1
     F = F.dot(X)   #возведение матрицы в степень
 t2 = time.time()
 print("Сумма ряда: ", sum, "\nВремя работы программы: ", t2 - t1, "секунд")
-
